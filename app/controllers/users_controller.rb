@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     #users can only edit themselves:
     if @user == current_user
       params[:song_ids].each do |id|
-        UserSong.create(song_id: id, user_id: @user.id)
+        UserSong.create(song_id: id, user_id: @user.id) unless @user.songs.include?(Song.find(id))
       end
       redirect "/users/#{@user.id}"
     else

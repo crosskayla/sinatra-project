@@ -1,8 +1,8 @@
 <div class="container mx-auto" style="width: 1100px;">
-  <h3><%= @song.name %></h3>
-    <p><b>Artist:</b> <%=@song.artist%></p>
-    <p><b>Difficulty:</b> <%= @song.difficulty %>/10</p>
-    <p><b>Users currently learning:</b></p>
+  <h2><%= @song.name %></h2>
+    <h4>Artist: <%=@song.artist%></h4>
+    <h4>Difficulty: <%= @song.difficulty %>/10</h4>
+    <h4>Users currently learning:</h4>
     <ul class="list-group" style="width: 300px;">
       <% @song.users.each do |user| %>
         <li class="list-group-item"><a href="/users/<%=user.id%>"><%= user.name %></a></li>
