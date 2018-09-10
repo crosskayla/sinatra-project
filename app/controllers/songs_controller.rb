@@ -1,4 +1,4 @@
-songclass SongsController < ApplicationController
+class SongsController < ApplicationController
 
   get '/songs' do
     @songs = Song.all
@@ -18,7 +18,8 @@ songclass SongsController < ApplicationController
     erb :'/songs/show'
   end
 
-  patch '/songs/:id' do 
+  patch '/songs/:id' do
     redirect to "songs/#{@song.id}"
   end
+
 end
