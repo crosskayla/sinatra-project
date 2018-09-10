@@ -9,3 +9,5 @@ Song.create(name: "The Ultracheese",
 Song.create(name: "Fly Me To The Moon",
   artist: "Frank Sinatra",
   difficulty: 7)
+
+User.create(username: "testuser", password: "password")

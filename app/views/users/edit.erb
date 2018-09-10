@@ -1,0 +1,7 @@
+<!-- TODO: If already checked, reflect that here -->
+<form action="/users/edit/<%= @user.id %>" method="post">
+  <% Song.all.each do |song| %>
+    <input type="checkbox" name="song_ids[]" value="<%= song.id %>"><%=song.name%></input><br>
+  <% end %>
+  <input type="submit" value="Submit"><br>
+</form>

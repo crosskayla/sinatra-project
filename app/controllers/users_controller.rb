@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
+  enable :sessions
+  set :session_secret, "password_security"
 
   get '/' do
-    erb :index
+    if !signed_in?
+      erb :index
+    else
+      redirect "/users/#{current_user.id}"
+    end
   end
 
   get '/signin' do
@@ -16,14 +22,19 @@ class UsersController < ApplicationController
     erb :failure
   end
 
+  get '/logout' do
+    session.clear
+    redirect "/"
+  end
+
   post '/signup' do
-    if params.values.any?{|v| v.empty?}
+    if params.values.any?{|v| v == "" }
       redirect "/failure"
     else
-      User.create(params)
+      @user = User.create(params)
       #logs user in automatically
       session[:user_id] = @user.id
-      redirect "/songs"
+      redirect "/users/edit"
     end
   end
 
@@ -31,9 +42,41 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/songs"
+      redirect "/users/edit"
     else
       redirect "/failure"
+    end
+  end
+
+  get '/users/edit' do
+    if signed_in?
+      @user = current_user
+      erb :'/users/edit'
+    else
+      redirect '/failure'
+    end
+  end
+
+  get '/users/:id' do
+    if signed_in?
+      @user = User.find(params[:id])
+      erb :'/users/show'
+    else
+      redirect '/signin'
+    end
+  end
+
+  post '/users/edit/:id' do
+
+    @user = User.find(params[:id])
+    #users can only edit themselves:
+    if @user == current_user
+      params[:song_id].each do |id|
+        UserSong.create(song_id: id, user_id: @user.id)
+      end
+      redirect "/users/#{@user.id}"
+    else
+      redirect '/signin'
     end
   end
 

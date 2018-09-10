@@ -1,0 +1,6 @@
+<h1><%= @user.first_name %>'s Songs</h1>
+<% @user.songs.each do |song| %>
+  <h3><%=song.name%></h3>
+  <p>Artist: <%=song.artist%></p>
+  <p>Difficulty: <%= song.difficulty %>/10</p>
+<% end %>
