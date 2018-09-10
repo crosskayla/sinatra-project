@@ -1,0 +1,9 @@
+<section class="jumbotron text-center">
+<div class="container">
+  <% Song.all.each do |song| %>
+    <h2>Song name: <%= song.name %></h1>
+      <p>Artist: <%= song.artist %></p>
+      <p>Difficulty: <%= song.difficulty %>/10</p>
+  <% end %>
+</div>
+</section>
