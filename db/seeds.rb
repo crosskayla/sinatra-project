@@ -12,6 +12,6 @@ Song.create(name: "Fly Me To The Moon",
 
 User.create(username: "testuser",
   password: "password",
-  first_name: "First"
-  last_name: "Last"
+  first_name: "First",
+  last_name: "Last",
   skill_level: 2)
