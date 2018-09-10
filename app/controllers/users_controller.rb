@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     erb :failure
   end
 
-  get '/logout' do
+  get '/signout' do
     session.clear
     redirect "/"
   end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #users can only edit themselves:
     if @user == current_user
-      params[:song_id].each do |id|
+      params[:song_ids].each do |id|
         UserSong.create(song_id: id, user_id: @user.id)
       end
       redirect "/users/#{@user.id}"

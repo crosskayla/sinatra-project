@@ -1,1 +1,11 @@
-#TBD
+<div class="container mx-auto" style="width: 1100px;">
+  <h2><%= @song.name %></h2>
+    <p>Artist: <%=@song.artist%></p>
+    <p>Difficulty: <%= @song.difficulty %>/10</p>
+    <p>Users Learning:</p>
+    <ul class="list-group">
+      <% @song.users.each do |user| %>
+        <li class="list-group-item"><a href="/users/<%=user.id%>"><%= user.name %></a></li>
+      <% end %>
+    </ul>
+</div>
