@@ -1,6 +1,6 @@
 <!-- TODO: add option to create a song -->
 
-<div class="container mx-auto" style="width: 400px;">
+<div class="container text-center mx-auto">
   <h3>Please select the songs you'd like to learn:</h3>
   <form action="/users/edit/<%= @user.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
@@ -12,9 +12,7 @@
         </div>
       <% end %>
     <br>
-    <div class="text-center">
-       <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <br>
   <div class="text-center">
