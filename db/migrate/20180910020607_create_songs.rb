@@ -5,7 +5,7 @@ class CreateSongs < ActiveRecord::Migration
       t.string :artist
       t.string :link
       t.integer :difficulty
-      t.integer :progress
+      t.integer :created_by
     end
   end
 end
