@@ -1,5 +1,6 @@
 <div class="container">
   <form class="form-signin center col-md-6" action="/songs" method="post">
+    <input type="hidden" name="song[created_by]" value="<%= current_user.id %>">
     <h2 class="h2 mb-3">Create a song</h2><br>
     <div class="form-group">
       <label for="song[name]">Name</label>
@@ -19,6 +20,6 @@
       <label for="song[link]">Embed link</label>
       <input type="text" class="form-control" name="song[link]" placeholder="Link">
     </div>
-    <button class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+    <button class="btn btn-lg btn-primary" type="submit">Create song</button>
   </form>
 </div>
