@@ -21,3 +21,8 @@ Song.create(name: "Fly Me To The Moon",
   difficulty: 4,
   link: "https://www.youtube.com/embed/Iq7Q09FIKS0",
   created_by: 1)
+
+  Song.create(name: "Gravity",
+    artist: "John Mayer",
+    difficulty: 6,
+    created_by: 1)
