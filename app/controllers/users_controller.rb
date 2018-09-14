@@ -25,20 +25,32 @@ class UsersController < ApplicationController
 
     #users can only edit themselves:
     if @user == current_user
-      #removes songs unless selected on form
-      @user.songs.each do |song|
-        @user.songs.delete(song) unless params[:song_ids].include?(song.id)
-      end
 
-      #adds songs if selected on form & not already in user songs
-      params[:song_ids].each do |id|
-        @song = Song.find(id)
-        @user.songs << @song unless @user.songs.include?(@song)
-      end
+        if params[:song_ids]
 
-      @user.save
-      flash[:message] = "Successfully edited your library."
-      redirect "/users/#{@user.id}"
+          #removes songs unless selected on form
+          @user.songs.each do |song|
+            @user.songs.delete(song) unless params[:song_ids].include?(song.id)
+          end
+
+          #adds songs if selected on form & not already in user songs
+          params[:song_ids].each do |id|
+            @song = Song.find(id)
+            @user.songs << @song unless @user.songs.include?(@song)
+          end
+
+        #when user is removing all songs from library
+        else
+          @user.songs.each do |song|
+            @user.songs.delete(song)
+          end
+        end
+
+        @user.save
+        flash[:message] = "Successfully edited your library."
+        redirect "/users/#{@user.id}"
+
+    #user attempting to edit a user besides themselves
     else
       flash[:message] = "You can only edit your own account."
       redirect '/failure'
