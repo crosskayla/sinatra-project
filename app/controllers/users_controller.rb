@@ -64,14 +64,24 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/users/edit/:id' do
-
+  patch '/users/edit/:id' do
     @user = User.find(params[:id])
+
     #users can only edit themselves:
     if @user == current_user
-      params[:song_ids].each do |id|
-        UserSong.create(song_id: id, user_id: @user.id) unless @user.songs.include?(Song.find(id))
+
+      #removes songs unless selected on form
+      @user.songs.each do |song|
+        @user.songs.delete(song) unless params[:song_ids].include?(song.id)
       end
+
+      #adds songs if selected on form & not already in user songs
+      params[:song_ids].each do |id|
+        @song = Song.find(id)
+        @user.songs << @song unless @user.songs.include?(@song)
+      end
+
+      @user.save
       redirect "/users/#{@user.id}"
     else
       redirect '/signin'

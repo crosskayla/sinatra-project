@@ -3,6 +3,7 @@
 <div class="container mx-auto" style="width: 400px;">
   <h2>Please select the songs you'd like to learn:</h1>
   <form action="/users/edit/<%= @user.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
       <% Song.all.each do |song| %>
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="song_id" name="song_ids[]"
