@@ -11,8 +11,14 @@ class SongsController < ApplicationController
   post '/songs' do
     @song = Song.create(params[:song])
     #adds song to library of creator
-    UserSong.create(song_id: @song.id, user_id: current_user.id)
-    redirect to "/songs/#{@song.id}"
+    @usersong = UserSong.create(song_id: @song.id, user_id: current_user.id)
+    if @song & @usersong
+      flash[:message] = "Song successfully created!"
+      redirect to "/songs/#{@song.id}"
+    else
+      flash[:message] = "There was an error creating that song."
+      redirect to "/users/#{current_user.id}"
+    end
   end
 
   get '/songs/:id' do
@@ -33,11 +39,14 @@ class SongsController < ApplicationController
 
   delete '/songs/:id' do
     @song = Song.find(params[:id])
+    @song_name = @song.name
     if @song.created_by == current_user.id
       @song.destroy
+      flash[:message] = "#{@song_name} was successfully deleted."
       redirect to "/songs"
     else
-      redirect "/failure"
+      flash[:message] = "You can only delete songs created by you."
+      redirect "/songs"
     end
   end
 

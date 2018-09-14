@@ -1,4 +1,7 @@
 <section class="jumbotron text-center">
+  <% if flash[:message] %>
+    <h3 class="cover-heading"><%= flash[:message] %></h3>
+  <% end %>
   <h1>All Songs</h1>
   <div class="container">
     <% Song.all.each do |song| %>
