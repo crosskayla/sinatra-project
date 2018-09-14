@@ -16,3 +16,4 @@ gem 'thin'
 gem 'tux'
 gem 'capybara'
 gem 'bcrypt'
+gem "sinatra-flash"
