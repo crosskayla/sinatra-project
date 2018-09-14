@@ -5,6 +5,7 @@ class UsersController < ApplicationController
       @user = current_user
       erb :'/users/edit'
     else
+      flash[:message] = "You must be signed in to edit your user page."
       redirect '/failure'
     end
   end
@@ -14,7 +15,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       erb :'/users/show'
     else
-      redirect '/signin'
+      flash[:message] = "You must be signed in to view user pages."
+      redirect '/failure'
     end
   end
 
@@ -23,7 +25,6 @@ class UsersController < ApplicationController
 
     #users can only edit themselves:
     if @user == current_user
-
       #removes songs unless selected on form
       @user.songs.each do |song|
         @user.songs.delete(song) unless params[:song_ids].include?(song.id)
@@ -38,7 +39,8 @@ class UsersController < ApplicationController
       @user.save
       redirect "/users/#{@user.id}"
     else
-      redirect '/signin'
+      flash[:message] = "You can only edit your own account."
+      redirect '/failure'
     end
   end
 

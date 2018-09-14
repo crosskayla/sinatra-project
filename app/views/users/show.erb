@@ -1,4 +1,10 @@
 <div class="container mx-auto text-center">
+  <% if flash[:message] %>
+    <div class="alert alert-primary" role="alert">
+      <%= flash[:message] %>
+    </div>
+  <% end %>
+
   <h1><%= @user.name.titleize %>'s Songs</h1>
 
   <% @user.songs.each do |song| %>

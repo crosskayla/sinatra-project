@@ -1,5 +1,9 @@
 <main role="main" class="text-center">
-  <h1 class="cover-heading">Something went wrong.</h1>
+  <% if flash[:message] %>
+    <h2 class="cover-heading"><%= flash[:message] %></h2>
+  <% else %>
+    <h1 class="cover-heading">Something went wrong.</h1>
+  <% end %>
   <p class="lead">Please try again.</p>
   <p class="lead">
     <a href="/signin" class="btn btn-lg">Sign In</a>
