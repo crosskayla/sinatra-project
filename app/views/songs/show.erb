@@ -1,12 +1,14 @@
 <div class="container mx-auto">
   <div class="row">
-    <div class="col-md-4 pull-left">
+    <div class="col-md-6 pull-left">
       <h1><%= @song.name %></h1>
       <% if @song.created_by == current_user.id%>
         <p class="text-muted">Added by you, <%= current_user.name %>!<br>
         <a href="/songs/<%= @song.id %>/edit">Edit or delete song</a></p>
+        <br>
       <% else %>
         <p class="text-muted">Added by <a href="/users/<%= @song.created_by %>"><%= User.find(@song.created_by).name %></a></p>
+        <br>
       <% end %>
         <h4>Artist: <%=@song.artist%></h4>
         <h4>Difficulty: <%= @song.difficulty %>/10</h4>
@@ -30,8 +32,6 @@
         <iframe class="embed-responsive-item" src="<%= @song.link %>"></iframe>
       </div>
       <% end %>
-    </div>
-    <div class="col-md-2">
     </div>
   </div>
 </div>

@@ -22,11 +22,7 @@ class SongsController < ApplicationController
 
   get '/songs/:id/edit' do
     @song = Song.find(params[:id])
-    if @song.created_by == current_user.id
-      erb :'/songs/edit'
-    else
-      erb :'/failure'
-    end
+    erb :'/songs/edit'
   end
 
   patch '/songs/:id' do
@@ -41,7 +37,7 @@ class SongsController < ApplicationController
       @song.destroy
       redirect to "/songs"
     else
-      erb :'/failure'
+      redirect "/failure"
     end
   end
 

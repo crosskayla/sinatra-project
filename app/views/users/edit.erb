@@ -1,7 +1,7 @@
 <!-- TODO: add option to create a song -->
 
 <div class="container text-center mx-auto">
-  <h3>Please select the songs you'd like to learn:</h3>
+  <h3>Please select the songs you'd like to learn:</h3><br>
   <form action="/users/edit/<%= @user.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
       <% Song.all.each do |song| %>
@@ -16,6 +16,6 @@
   </form>
   <br>
   <div class="text-center">
-    <p><a href="/songs/new">Or, add your own song</a></p>
+    <p><a href="/songs/new">Or, add a new song</a></p>
   </div>
 </div>
