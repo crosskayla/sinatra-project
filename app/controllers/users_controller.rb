@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  enable :sessions
-  set :session_secret, "password_security"
 
   get '/' do
     if !signed_in?
@@ -77,16 +75,6 @@ class UsersController < ApplicationController
       redirect "/users/#{@user.id}"
     else
       redirect '/signin'
-    end
-  end
-
-  helpers do
-    def signed_in?
-      !!session[:user_id]
-    end
-
-    def current_user
-      User.find(session[:user_id])
     end
   end
 

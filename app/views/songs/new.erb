@@ -1,0 +1,24 @@
+<div class="container">
+  <form class="form-signin center col-md-6" action="/songs" method="post">
+    <h2 class="h2 mb-3">Create a song</h2><br>
+    <div class="form-group">
+      <label for="song[name]">Name</label>
+      <input type="text" class="form-control" name="song[name]" placeholder="Name" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="song[artist]">Artist</label>
+      <input type="text" class="form-control" name="song[artist]" placeholder="Artist" required>
+    </div><br>
+    <label>Difficulty</label>
+    <div class="form-group">
+      <% 1.upto(10) do |num|%>
+        <label class="radio-inline"><input type="radio" name="song[difficulty]" value="<%= num %>"><%= num %></label>
+      <% end %>
+    </div><br>
+    <div class="form-group">
+      <label for="song[link]">Link</label>
+      <input type="text" class="form-control" name="song[link]" placeholder="Link" required>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+  </form>
+</div>

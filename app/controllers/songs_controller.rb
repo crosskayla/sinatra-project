@@ -9,7 +9,10 @@ class SongsController < ApplicationController
   end
 
   post '/songs' do
-    redirect to "songs/#{@song.id}"
+    @song = Song.create(params[:song])
+    #adds song to library of creator
+    UserSong.create(song_id: @song.id, user_id: current_user.id)
+    redirect to "/songs/#{@song.id}"
   end
 
   get '/songs/:id' do
@@ -18,7 +21,7 @@ class SongsController < ApplicationController
   end
 
   patch '/songs/:id' do
-    redirect to "songs/#{@song.id}"
+    redirect to "/songs/#{@song.id}"
   end
 
 end
