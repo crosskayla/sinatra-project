@@ -1,8 +1,10 @@
-<div class="container mx-auto" style="width: 1100px;">
+<div class="container mx-auto text-center">
   <h1><%= @user.name.titleize %>'s Songs</h1>
-    <% @user.songs.each do |song| %>
-      <h3><a href="/songs/<%= song.id %>"><%=song.name%></a></h3>
-      <p>Artist: <%=song.artist%></p>
-      <p>Difficulty: <%= song.difficulty %>/10</p>
-    <% end %>
+
+  <% @user.songs.each do |song| %>
+    <h3><a href="/songs/<%= song.id %>"><%=song.name%></a></h3>
+    <p>Artist: <%=song.artist%></p>
+    <p>Difficulty: <%= song.difficulty %>/10</p>
+  <% end %>
+
 </div>
