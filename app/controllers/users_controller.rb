@@ -37,7 +37,25 @@ class UsersController < ApplicationController
       end
 
       @user.save
+      flash[:message] = "Successfully edited your library."
       redirect "/users/#{@user.id}"
+    else
+      flash[:message] = "You can only edit your own account."
+      redirect '/failure'
+    end
+  end
+
+  patch '/users/addone/:id' do
+    @user = User.find(params[:id])
+    @song = Song.find(params[:song_id])
+
+    #users can only edit themselves:
+    if @user == current_user
+      #adds song
+      @user.songs << @song unless @user.songs.include?(@song)
+      @user.save
+      flash[:message] = "Successfully added song to your library."
+      redirect "/songs/#{@song.id}"
     else
       flash[:message] = "You can only edit your own account."
       redirect '/failure'

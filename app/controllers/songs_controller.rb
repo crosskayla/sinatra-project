@@ -43,7 +43,7 @@ class SongsController < ApplicationController
 
   patch '/songs/:id' do
     @song = Song.find(params[:id])
-    if @song.id == current_user.id
+    if @song.created_by == current_user.id
       @song.update(params[:song])
       flash[:message] = "Song updated successfully!"
     else
