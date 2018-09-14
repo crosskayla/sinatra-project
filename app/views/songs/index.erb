@@ -1,10 +1,17 @@
 <section class="jumbotron text-center">
-<h1>All Songs</h1>
-<div class="container">
-  <% Song.all.each do |song| %>
-    <h2><a href="/songs/<%= song.id %>"><%= song.name %></a></h1>
-      <p>Artist: <%= song.artist %></p>
-      <p>Difficulty: <%= song.difficulty %>/10</p>
-  <% end %>
-</div>
+  <h1>All Songs</h1>
+  <div class="container">
+    <% Song.all.each do |song| %>
+      <h2><a href="/songs/<%= song.id %>"><%= song.name %></a></h1>
+        <p>Artist: <%= song.artist %></p>
+        <p>Difficulty: <%= song.difficulty %>/10</p>
+    <% end %>
+  </div>
+  <br>
+  <div class="container mx-auto" style="width: 400px;">
+    <h4>Not seeing what you want to learn?</h4>
+    <h4><a href="/songs/new">Add your own song here.</a></h4>
+    </div>
+  </div>
+
 </section>
