@@ -1,5 +1,5 @@
 <div class="container text-center mx-auto">
-  <h3>Please select the songs you'd like to learn:</h3><br>
+  <h3>Please select the songs you'd like in your library:</h3><br>
   <form action="/users/edit/<%= @user.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
       <% Song.all.each do |song| %>
