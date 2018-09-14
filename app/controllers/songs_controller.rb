@@ -10,9 +10,9 @@ class SongsController < ApplicationController
 
   post '/songs' do
     @song = Song.create(params[:song])
-    #adds song to library of creator
-    @usersong = UserSong.create(song_id: @song.id, user_id: current_user.id)
-    if @song && @usersong
+    if @song
+      #adds song to library of creator
+      current_user.songs << @song
       flash[:message] = "Song created successfully!"
       redirect to "/songs/#{@song.id}"
     else

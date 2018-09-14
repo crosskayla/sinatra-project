@@ -1,9 +1,13 @@
+<% if flash[:message] %>
+  <div class="container mx-auto center" style="width: 300px;">
+    <div class="alert alert-light text-center" role="alert">
+      <%= flash[:message] %>
+    </div>
+  </div>
+<% end %>
 <div class="container mx-auto">
   <div class="row">
     <div class="col-md-6 pull-left">
-      <% if flash[:message] %>
-        <br><p class="text-muted"><i><%= flash[:message] %></i></p>
-      <% end %>
       <h1><%= @song.name %></h1>
       <% if @song.created_by == current_user.id%>
         <p class="text-muted">Added by you, <%= current_user.name %>!<br>
