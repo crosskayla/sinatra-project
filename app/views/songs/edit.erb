@@ -1,0 +1,38 @@
+<div class="container">
+  <form class="form-signin center col-md-6" action="/songs/<%= @song.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="song[created_by]" value="<%= current_user.id %>">
+    <h2 class="h2 mb-3">Edit your song</h2><br>
+    <div class="form-group">
+      <label for="song[name]">Name</label>
+      <input type="text" class="form-control" name="song[name]" placeholder="Name" value="<%= @song.name %>" autofocus>
+    </div>
+    <div class="form-group">
+      <label for="song[artist]">Artist</label>
+      <input type="text" class="form-control" name="song[artist]" placeholder="Artist" value="<%= @song.artist %>">
+    </div><br>
+    <label>Difficulty</label>
+    <div class="form-group">
+      <% 1.upto(10) do |num|%>
+        <label class="radio-inline"><input type="radio" name="song[difficulty]" value="<%= num %>"
+          <%= "checked" if num == @song.difficulty %>><%= num %></label>
+      <% end %>
+    </div><br>
+    <div class="form-group">
+      <label for="song[link]">Embed link</label>
+      <input type="text" class="form-control" name="song[link]" placeholder="Link" value="<%= @song.link if @song.link %>">
+    </div><br>
+    <button class="btn btn-lg btn-primary" type="submit">Edit song</button>
+  </form>
+
+  <form class="form-signin center col-md-4 pull-right" action="/songs/<%= @song.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <div class="text-center">
+      <h2 class="h2 mb-3">Or... delete your song</h2><br>
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-lg btn-primary" type="submit">Delete</button>
+    </div>
+  </form>
+
+  <!-- Add delete -->
+</div>
