@@ -21,12 +21,12 @@
         </div>
         <ul class="nav navbar-nav navbar-left">
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="/songs">Browse songs</a></li>
+          <li><a href="/songs">Browse song library</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
-            <li><a href="/users/<%= current_user.id %>">My songs</a></li>
-            <li><a href="/users/edit">Edit my songs</a></li>
+            <li><a href="/users/<%= current_user.id %>">My song library</a></li>
+            <li><a href="/users/edit">Edit my song library</a></li>
             <li><a href="/signout">Sign out</a></li>
           <% else %>
             <li><a href="/signin">Sign in</a></li>
