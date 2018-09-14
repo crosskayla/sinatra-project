@@ -11,10 +11,12 @@
     <% end %>
   </div>
   <br>
-  <div class="container mx-auto" style="width: 400px;">
-    <h4>Not seeing what you want to learn?</h4>
-    <h4><a href="/songs/new">Add your own song here.</a></h4>
+  <% if signed_in? %>
+    <div class="container mx-auto" style="width: 400px;">
+      <h4>Not seeing what you want to learn?</h4>
+      <h4><a href="/songs/new">Add your own song here.</a></h4>
+      </div>
     </div>
-  </div>
+  <% end %>
 
 </section>

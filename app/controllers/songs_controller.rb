@@ -5,12 +5,17 @@ class SongsController < ApplicationController
   end
 
   get '/songs/new' do
-    erb :'/songs/new'
+    if signed_in?
+      erb :'/songs/new'
+    else
+      flash[:message] = "You must be signed in to create a song."
+      redirect to "/failure"
+    end
   end
 
   post '/songs' do
     @song = Song.create(params[:song])
-    if @song
+    if @song && current_user
       #adds song to library of creator
       current_user.songs << @song
       flash[:message] = "Song created successfully!"
@@ -22,8 +27,13 @@ class SongsController < ApplicationController
   end
 
   get '/songs/:id' do
-    @song = Song.find(params[:id])
-    erb :'/songs/show'
+    if signed_in?
+      @song = Song.find(params[:id])
+      erb :'/songs/show'
+    else
+      flash[:message] = "Error: you must be signed in to view individual song information."
+      redirect to '/songs'
+    end
   end
 
   get '/songs/:id/edit' do
