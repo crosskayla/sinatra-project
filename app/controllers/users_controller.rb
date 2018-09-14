@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       redirect "/failure"
     else
       @user = User.create(params)
-      #logs user in automatically
+      #logs user in automatically and allows them to select songs
       session[:user_id] = @user.id
       redirect "/users/edit"
     end
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      #redirects to user page
       redirect "/users/#{@user.id}"
     else
       redirect "/failure"
